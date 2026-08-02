@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praxentis Health — The operating system for allied health</title>
+<meta name="description" content="Praxentis Health is a concept-stage vision: one calm system unifying bookings, records, workflows and clinic management for allied health. Expression of interest open.">
+<link rel="icon" href="assets/praxentis-header-icon-clean.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --ground:#F4F7FB;
+    --soft-green:#EAF8F1;
+    --ink:#0E1D3D;
+    --ink-soft:#41507A;
+    --muted:#66739A;
+    --line:#E2E8F2;
+    --accent:#52C78C;
+    --accent-deep:#2E9E68;
+    --accent-ink:#1C6B46;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(82,199,140,.25)}
+  a{color:var(--accent-deep);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 0}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .brand:hover{text-decoration:none}
+  .brand img{width:132px;height:auto;display:block}
+  .brand .div{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--accent-ink);border:1px solid #BFE8D2;border-radius:999px;padding:4px 12px;background:var(--soft-green)}
+  nav ul{display:flex;gap:28px;list-style:none}
+  nav a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s ease-out}
+  nav a:hover{color:var(--ink);text-decoration:none}
+  .nav-cta{font-family:var(--mono);font-size:13px;font-weight:500;color:#FFFFFF;background:var(--accent-deep);padding:9px 18px;border-radius:999px;transition:background .2s ease-out}
+  .nav-cta:hover{background:#27835A;text-decoration:none}
+  @media(max-width:1024px){nav ul{display:none}}
+
+  /* hero */
+  .hero{padding:96px 0 88px;background:linear-gradient(180deg,var(--soft-green) 0%,#FFFFFF 88%)}
+  .hero-inner{max-width:52rem}
+  .concept-badge{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent-ink);background:#FFFFFF;border:1px solid #BFE8D2;border-radius:999px;
+    padding:7px 16px;margin-bottom:28px;
+  }
+  .concept-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(82,199,140,.45)}70%{box-shadow:0 0 0 9px rgba(82,199,140,0)}100%{box-shadow:0 0 0 0 rgba(82,199,140,0)}}
+  h1{font-size:clamp(2.5rem,5.4vw,3.8rem);line-height:1.1;font-weight:700;letter-spacing:-.025em;margin-bottom:24px}
+  h1 .grn{color:var(--accent-deep)}
+  .lede{font-size:clamp(1.05rem,1.7vw,1.25rem);color:var(--ink-soft);max-width:42rem;margin-bottom:36px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;font-weight:600;font-size:15px;padding:14px 28px;border-radius:999px;transition:background .2s ease-out,border-color .2s ease-out}
+  .btn-primary{background:var(--accent-deep);color:#FFFFFF}
+  .btn-primary:hover{background:#27835A;text-decoration:none}
+  .btn-ghost{border:1px solid #C7D2E4;color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);text-decoration:none}
+
+  /* sections */
+  section{padding:88px 0;border-bottom:1px solid var(--line)}
+  .sec-head{max-width:46rem;margin-bottom:52px}
+  h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:700;letter-spacing:-.015em;line-height:1.2;margin-bottom:16px}
+  .sec-head p{color:var(--muted);font-size:1.05rem}
+  .mono-label{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:16px;display:block}
+
+  /* vision cards */
+  .vision{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:1024px){.vision{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.vision{grid-template-columns:1fr}}
+  .v-card{
+    background:#FFFFFF;border:1px solid var(--line);border-radius:20px;padding:30px 26px;
+    transition:border-color .2s ease-out,box-shadow .2s ease-out,transform .2s ease-out;
+  }
+  .v-card:hover{border-color:#BFE8D2;box-shadow:0 14px 34px rgba(14,29,61,.07);transform:translateY(-3px)}
+  .v-icon{width:46px;height:46px;border-radius:14px;background:var(--soft-green);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .v-card h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}
+  .v-card p{color:var(--muted);font-size:.92rem}
+
+  /* why band */
+  .why{background:var(--ground)}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  @media(max-width:1024px){.why-grid{grid-template-columns:1fr;gap:36px}}
+  .why-list{list-style:none;display:grid;gap:16px}
+  .why-list li{
+    background:#FFFFFF;border:1px solid var(--line);border-radius:16px;padding:20px 24px;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .why-list .mark{
+    flex:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent-ink);
+    background:var(--soft-green);border-radius:8px;padding:5px 10px;margin-top:2px;
+  }
+  .why-list h3{font-size:1rem;font-weight:600;margin-bottom:4px}
+  .why-list p{color:var(--muted);font-size:.92rem}
+  .why-copy p{color:var(--ink-soft);font-size:1.05rem;margin-bottom:18px}
+  .why-copy .pull{
+    font-size:clamp(1.25rem,2.4vw,1.6rem);font-weight:500;letter-spacing:-.01em;line-height:1.4;
+    border-left:3px solid var(--accent);padding-left:22px;color:var(--ink);margin-top:26px;
+  }
+
+  /* principles */
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:1024px){.principles{grid-template-columns:1fr}}
+  .p-card{background:var(--soft-green);border:1px solid #D6F0E2;border-radius:20px;padding:32px 28px}
+  .p-card .n{font-family:var(--mono);font-size:12px;color:var(--accent-ink);letter-spacing:.12em;display:block;margin-bottom:16px}
+  .p-card h3{font-size:1.12rem;font-weight:600;margin-bottom:10px}
+  .p-card p{color:var(--ink-soft);font-size:.94rem}
+
+  /* roadmap */
+  .track{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+  @media(max-width:1024px){.track{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.track{grid-template-columns:1fr}}
+  .t-step{background:#FFFFFF;border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+  .t-step.now{border-color:var(--accent);background:var(--soft-green)}
+  .t-step .stage{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:12px}
+  .t-step.now .stage{color:var(--accent-ink)}
+  .t-step h3{font-size:1.02rem;font-weight:600;margin-bottom:8px}
+  .t-step p{color:var(--muted);font-size:.9rem}
+  .t-flag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:#FFFFFF;background:var(--accent-deep);border-radius:999px;padding:3px 11px;margin-bottom:14px;text-transform:uppercase}
+  .t-flag.future{background:#E8EDF6;color:var(--muted)}
+
+  /* EOI */
+  .eoi{
+    background:var(--soft-green);border:1px solid #D6F0E2;border-radius:28px;
+    padding:64px;text-align:center;max-width:56rem;margin:0 auto;
+  }
+  @media(max-width:600px){.eoi{padding:40px 24px}}
+  .eoi h2{margin-bottom:14px}
+  .eoi p{color:var(--ink-soft);max-width:38rem;margin:0 auto 32px}
+  .eoi .btn-primary{font-size:16px;padding:16px 34px}
+  .eoi .note{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:22px;letter-spacing:.04em}
+
+  /* footer */
+  footer.site{padding:56px 0 44px}
+  .foot-grid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
+  .foot-grid img{width:120px;height:auto}
+  .foot-meta{font-size:14px;color:var(--muted);line-height:2}
+  .foot-meta a{color:var(--muted)}
+  .foot-meta a:hover{color:var(--accent-deep)}
+  .privacy{margin-top:36px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:#93A0C0;font-family:var(--mono);letter-spacing:.02em}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Praxentis Health home">
+      <img src="assets/praxentis-lockup-light-clean.png" alt="Praxentis" width="132">
+      <span class="div">HEALTH</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#vision">The vision</a></li>
+        <li><a href="#why">Why it matters</a></li>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="mailto:owner@praxentis.co.site">express interest</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-inner">
+      <span class="concept-badge"><span class="pulse" aria-hidden="true"></span> Concept — in design</span>
+      <h1>The operating system for <span class="grn">allied health.</span></h1>
+      <p class="lede">Praxentis Health is the studio's long-term vision: bookings, records, workflows and clinic management — unified into one calm, Australian system. It is not a product yet. This page is the design brief, published early and honestly.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:owner@praxentis.co.site">Register your interest</a>
+        <a class="btn btn-ghost" href="#roadmap">See the roadmap</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISION -->
+  <section id="vision">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono-label">01 — The vision</span>
+        <h2>One system, instead of five that barely talk.</h2>
+        <p>The future Praxentis Health platform brings the core of running an allied-health practice into a single, coherent place.</p>
+      </div>
+      <div class="vision">
+        <div class="v-card">
+          <div class="v-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E9E68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          </div>
+          <h3>Bookings</h3>
+          <p>Scheduling that understands how a clinic actually fills a day — practitioners, rooms, recalls and gaps in one view.</p>
+        </div>
+        <div class="v-card">
+          <div class="v-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E9E68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9 12h6M9 16h6M9 8h3"/></svg>
+          </div>
+          <h3>Records</h3>
+          <p>Clinical records designed for allied health from the first field — not a medical template bent into shape.</p>
+        </div>
+        <div class="v-card">
+          <div class="v-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E9E68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7.5l2.8 8M16 7.5l-2.8 8M8.5 6h7"/></svg>
+          </div>
+          <h3>Workflows</h3>
+          <p>Intake, safety screening, outcomes and follow-up as connected steps, each one informed by the last.</p>
+        </div>
+        <div class="v-card">
+          <div class="v-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E9E68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
+          </div>
+          <h3>Clinic management</h3>
+          <p>The operational layer — team, communication, reporting — so owners run the practice from one screen, not five tabs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why" class="why">
+    <div class="wrap why-grid">
+      <div class="why-copy">
+        <span class="mono-label">02 — Why it matters</span>
+        <h2>Clinic software hasn't earned its keep.</h2>
+        <p>Most of what clinics run on today was designed for someone else's practice, another decade, or another country's rules. Praxentis builds inside real clinics — and the same problems surface again and again.</p>
+        <p class="pull">The fix isn't another bolt-on. It's a system designed, end to end, for how allied health actually works.</p>
+      </div>
+      <ul class="why-list">
+        <li>
+          <span class="mark">01</span>
+          <div><h3>Fragmented</h3><p>Bookings in one tool, records in another, reminders in a third — and the receptionist is the integration layer.</p></div>
+        </li>
+        <li>
+          <span class="mark">02</span>
+          <div><h3>Rigid</h3><p>Workflows a clinic can't change without a support ticket, built for a generic practice rather than a real one.</p></div>
+        </li>
+        <li>
+          <span class="mark">03</span>
+          <div><h3>Outdated</h3><p>Interfaces from another era, hosted offshore, with privacy posture treated as a footnote instead of a feature.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section id="principles">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono-label">03 — Design principles</span>
+        <h2>What Praxentis Health will inherit.</h2>
+        <p>The concept doesn't start from zero. It inherits the operating discipline the studio already applies to everything it ships.</p>
+      </div>
+      <div class="principles">
+        <div class="p-card">
+          <span class="n">PRINCIPLE 01</span>
+          <h3>Piloted in real clinics</h3>
+          <p>Nothing ships to other practices that hasn't earned its place inside an actual one. Every Praxentis product is exercised in real clinics — one in Adelaide, one in Sydney — before release. Health will be no different.</p>
+        </div>
+        <div class="p-card">
+          <span class="n">PRINCIPLE 02</span>
+          <h3>Australian data residency</h3>
+          <p>Patient data never leaves the country. Infrastructure in Australia, alignment with the Privacy Act 1988 (Cth) and the Australian Privacy Principles — a brand pillar, not a compliance afterthought.</p>
+        </div>
+        <div class="p-card">
+          <span class="n">PRINCIPLE 03</span>
+          <h3>Calm over clever</h3>
+          <p>Stable, premium, operational software. Fewer moving parts, clearer decisions — a system that feels like relief on a busy day, never another thing to manage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono-label">04 — Roadmap</span>
+        <h2>Where this stands, honestly.</h2>
+        <p>Praxentis Health is concept-stage. There are no screenshots to share and no dates to promise — the studio ships its current products first, and funds the rest with the revenue they earn.</p>
+      </div>
+      <div class="track">
+        <div class="t-step now">
+          <span class="t-flag">You are here</span>
+          <span class="stage">Stage 01</span>
+          <h3>Concept — in design</h3>
+          <p>The vision is written, the principles are set, and every shipped Praxentis product is teaching the platform what a clinic needs.</p>
+        </div>
+        <div class="t-step">
+          <span class="t-flag future">Future</span>
+          <span class="stage">Stage 02</span>
+          <h3>Design &amp; validation</h3>
+          <p>Workflows modelled against real clinic operations, reviewed with the practices that pilot Praxentis software today.</p>
+        </div>
+        <div class="t-step">
+          <span class="t-flag future">Future</span>
+          <span class="stage">Stage 03</span>
+          <h3>Clinic pilot</h3>
+          <p>A working system exercised daily inside a real Adelaide practice before any other clinic sees it.</p>
+        </div>
+        <div class="t-step">
+          <span class="t-flag future">Future</span>
+          <span class="stage">Stage 04</span>
+          <h3>Considered release</h3>
+          <p>A gradual opening to allied-health clinics — only when the platform has earned it, on the studio's usual terms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EOI -->
+  <section style="border-bottom:none">
+    <div class="wrap">
+      <div class="eoi">
+        <span class="mono-label">05 — Expression of interest</span>
+        <h2>Want to be part of shaping it?</h2>
+        <p>If you run an allied-health clinic and this is the system you've been waiting for, register your interest. Early conversations with real practitioners will shape what Praxentis Health becomes.</p>
+        <a class="btn btn-primary" href="mailto:owner@praxentis.co.site?subject=Praxentis%20Health%20—%20expression%20of%20interest">Email owner@praxentis.co.site</a>
+        <p class="note">One operator, end to end — the person who designs the system answers the email.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <img src="assets/praxentis-lockup-light-clean.png" alt="Praxentis" width="120">
+      <div class="foot-meta">
+        Praxentis · Adelaide, South Australia · <a href="mailto:owner@praxentis.co.site">owner@praxentis.co.site</a><br>
+        <a href="https://praxentis.co.site">praxentis.co.site</a> · <a href="#top">back to top ↑</a>
+      </div>
+    </div>
+    <p class="privacy">Aligned with the Privacy Act 1988 (Cth) and the Australian Privacy Principles. Patient data never leaves the country.</p>
+  </div>
+</footer>
+
+</body>
+</html>
